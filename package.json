@@ -1,0 +1,17 @@
+{
+  "name": "bar-ricardo-desde-1947",
+  "version": "1.0.0",
+  "description": "Web oficial de Bar Ricardo desde 1947 (Valencia)",
+  "private": true,
+  "scripts": {
+    "dev": "serve -l 3000 .",
+    "start": "serve -l 3000 ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.3"
+  },
+  "stackblitz": {
+    "installDependencies": true,
+    "startCommand": "npm run dev"
+  }
+}
