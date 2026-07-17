@@ -1,0 +1,324 @@
+/* ==========================================================================
+   Bar Ricardo desde 1947 — Hoja de estilos principal
+   Enfoque: mobile-first (los estilos base son para móvil,
+   las media queries amplían para pantallas grandes)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. RESET BÁSICO
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   2. VARIABLES DE DISEÑO
+   Definidas una sola vez y reutilizables en toda la web con var(--nombre)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta principal */
+  --color-negro: #0d0d0d;
+  --color-blanco: #ffffff;
+  --color-granate: #6e1423;        /* acentos, botones, enlaces activos */
+  --color-granate-claro: #8c2436;  /* hover / variante clara del granate */
+  --color-gris-claro: #f5f3f0;     /* fondos suaves alternativos */
+  --color-gris-texto: #4a4a4a;     /* texto secundario */
+
+  /* Acento cálido de la carta física (para la sección Menú) */
+  --color-naranja: #d97b29;
+
+  /* Tipografía */
+  --fuente-titulos: "Playfair Display", Georgia, serif;
+  --fuente-cuerpo: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* Medidas reutilizables */
+  --ancho-maximo: 1200px;
+  --altura-nav: 72px;
+  --espaciado-seccion: 4rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. TIPOGRAFÍA GENERAL
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--fuente-cuerpo);
+  font-size: 1rem;            /* 16px base */
+  line-height: 1.6;
+  color: var(--color-negro);
+  background-color: var(--color-blanco);
+  /* Deja hueco para la barra de navegación fija */
+  padding-top: var(--altura-nav);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.35rem; }
+
+p {
+  color: var(--color-gris-texto);
+}
+
+/* Enlaces dentro del contenido */
+main a {
+  color: var(--color-granate);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+main a:hover {
+  border-bottom-color: var(--color-granate);
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVEGACIÓN (barra superior fija)
+   -------------------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--altura-nav);
+  background-color: var(--color-negro);
+  color: var(--color-blanco);
+  z-index: 100;
+}
+
+.nav__contenedor {
+  max-width: var(--ancho-maximo);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo / nombre del bar en la esquina */
+.nav__logo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  color: var(--color-blanco);
+  letter-spacing: 0.02em;
+}
+
+.nav__logo span {
+  color: var(--color-granate-claro);
+  font-size: 0.8rem;
+  display: block;
+  font-family: var(--fuente-cuerpo);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Botón hamburguesa (solo visible en móvil) */
+.nav__toggle {
+  color: var(--color-blanco);
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Lista de enlaces: en móvil es un panel desplegable */
+.nav__menu {
+  position: absolute;
+  top: var(--altura-nav);
+  left: 0;
+  width: 100%;
+  background-color: var(--color-negro);
+  display: none;               /* oculto hasta pulsar la hamburguesa */
+  flex-direction: column;
+  padding: 0.5rem 0 1rem;
+}
+
+.nav__menu.nav__menu--abierto {
+  display: flex;
+}
+
+.nav__enlace {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: var(--color-blanco);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.nav__enlace:hover {
+  color: var(--color-granate-claro);
+}
+
+/* Enlace de la página actual, marcado en granate */
+.nav__enlace--activo {
+  color: var(--color-granate-claro);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   5. CONTENIDO PRINCIPAL
+   -------------------------------------------------------------------------- */
+.contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: var(--espaciado-seccion) 1.25rem;
+}
+
+/* Cabecera sencilla de cada página interior */
+.cabecera-pagina {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cabecera-pagina h1 {
+  margin-bottom: 0.5rem;
+}
+
+/* Línea decorativa granate bajo los títulos */
+.cabecera-pagina::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-granate);
+  margin: 1rem auto 0;
+}
+
+/* Botón principal reutilizable */
+.boton {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--color-granate);
+  color: var(--color-blanco);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease;
+}
+
+.boton:hover {
+  background-color: var(--color-granate-claro);
+}
+
+/* --------------------------------------------------------------------------
+   6. FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+  background-color: var(--color-negro);
+  color: var(--color-blanco);
+  padding: 2.5rem 1.25rem;
+  margin-top: var(--espaciado-seccion);
+}
+
+.footer__contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.footer h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-granate-claro);
+}
+
+.footer p,
+.footer a {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+}
+
+.footer a:hover {
+  color: var(--color-blanco);
+}
+
+.footer__copy {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 1.25rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   7. MEDIA QUERIES (tablet y escritorio)
+   -------------------------------------------------------------------------- */
+
+/* Tablet y superior: ≥ 768px */
+@media (min-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+
+  /* La hamburguesa desaparece y el menú se muestra en horizontal */
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__menu {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    padding: 0;
+    background: none;
+  }
+
+  .nav__enlace {
+    padding: 0.5rem 0.9rem;
+  }
+
+  .footer__contenedor {
+    grid-template-columns: repeat(3, 1fr);
+    text-align: left;
+  }
+
+  .footer__copy {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+}
+
+/* Escritorio grande: ≥ 1200px */
+@media (min-width: 1200px) {
+  h1 { font-size: 3.5rem; }
+}
