@@ -41,13 +41,72 @@
 
   <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <main>
-    <section class="contenedor">
+
+    <!-- =====================================================================
+         RECORRIDO DE SCROLL: la pista invisible que el usuario recorre.
+         Su altura la fija js/main.js según el número de secciones.
+         El escenario (la pared de cuadros) queda fijo mientras se scrollea.
+         ===================================================================== -->
+    <div class="recorrido" id="recorrido-inicio">
+      <div class="escenario">
+
+        <!-- La pared con los 12 cuadros (6 principales + 6 secundarios) -->
+        <div class="pared" id="pared-cuadros">
+
+          <!-- Fila superior -->
+          <div class="cuadro cuadro--principal" id="cuadro-historia" data-page="historia">
+            <span class="cuadro__titulo">HISTORIA</span>
+          </div>
+          <div class="cuadro cuadro--secundario" id="cuadro-sec-1"></div>
+          <div class="cuadro cuadro--principal" id="cuadro-reservas" data-page="reservas">
+            <span class="cuadro__titulo">RESERVAS</span>
+          </div>
+          <div class="cuadro cuadro--secundario" id="cuadro-sec-2"></div>
+
+          <!-- Fila central -->
+          <div class="cuadro cuadro--secundario" id="cuadro-sec-3"></div>
+          <div class="cuadro cuadro--principal" id="cuadro-menu" data-page="menu">
+            <span class="cuadro__titulo">MENÚ</span>
+          </div>
+          <div class="cuadro cuadro--secundario" id="cuadro-sec-4"></div>
+          <div class="cuadro cuadro--principal" id="cuadro-blog" data-page="blog">
+            <span class="cuadro__titulo">BLOG</span>
+          </div>
+
+          <!-- Fila inferior -->
+          <div class="cuadro cuadro--principal" id="cuadro-nosotros" data-page="nosotros">
+            <span class="cuadro__titulo">NOSOTROS</span>
+          </div>
+          <div class="cuadro cuadro--secundario" id="cuadro-sec-5"></div>
+          <div class="cuadro cuadro--principal" id="cuadro-contacto" data-page="contacto">
+            <span class="cuadro__titulo">CONTACTO</span>
+          </div>
+          <div class="cuadro cuadro--secundario" id="cuadro-sec-6"></div>
+
+          <!-- Panel de resumen: el JS rellena título, texto y enlace -->
+          <div class="resumen-cuadro" id="resumen-cuadro">
+            <h2 class="resumen-cuadro__titulo" id="resumen-titulo"></h2>
+            <p class="resumen-cuadro__texto" id="resumen-texto"></p>
+            <a class="enlace-recuadro resumen-cuadro__enlace" id="resumen-enlace" href="#"></a>
+          </div>
+
+          <!-- Indicador de scroll -->
+          <div class="indicador-scroll" id="indicador-scroll">
+            <span class="indicador-scroll__flecha">&darr;</span>
+            <span class="indicador-scroll__texto">Desliza para ver más</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CIERRE: aparece cuando la pared se desvanece ===== -->
+    <section class="contenedor cierre-inicio">
       <div class="cabecera-pagina">
         <h1>Bar Ricardo desde 1947</h1>
         <p>Tres generaciones de hospitalidad en el corazón de Valencia.</p>
       </div>
-
-      <p>
+      <p class="cierre-inicio__texto">
         Bienvenidos a la casa de las bravas. Desde 1947, Bar Ricardo es punto de
         encuentro de generaciones de valencianos: producto de mercado, barra con
         historia y una manera de entender la hospitalidad que no ha cambiado en
