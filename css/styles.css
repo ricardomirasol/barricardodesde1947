@@ -320,6 +320,52 @@ main a:hover {
   margin: 0 auto;
 }
 
+/* --------------------------------------------------------------------------
+   6b. PÁGINA DE RESERVAS (portal Cover Manager + WhatsApp)
+   -------------------------------------------------------------------------- */
+.bloque-reservas {
+  text-align: center;
+}
+
+.bloque-reservas__titulo {
+  color: var(--color-negro);
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* Contenedor del widget de Cover Manager (placeholder hasta tener el código).
+   Cuando se integre el widget real, bastará con sustituir el contenido interior. */
+.widget-reservas {
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  padding: 3.5rem 1.5rem;
+  border: 2px dashed #ccc5be;
+  border-radius: 4px;
+  background-color: var(--color-gris-claro);
+}
+
+.widget-reservas p {
+  font-family: var(--fuente-titulos);
+  font-size: 1.3rem;
+  color: var(--color-gris-texto);
+}
+
+.widget-reservas__nota {
+  font-family: var(--fuente-cuerpo) !important;
+  font-size: 0.85rem !important;
+  margin-top: 0.75rem;
+}
+
+.bloque-reservas__mensaje {
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+}
+
+/* El recuadro de WhatsApp va solo y centrado, sin margen de párrafo */
+.enlace-whatsapp {
+  margin-left: 0;
+}
+
 /* Subpáginas de contacto: secciones preparadas para el contenido */
 .subpagina-seccion {
   margin-bottom: 2.5rem;
