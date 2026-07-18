@@ -397,10 +397,15 @@ main a:hover {
   background-color: var(--color-blanco);
 }
 
+/* La pared es la "cámara": el zoom se hace escalando este contenedor,
+   los cuadros nunca se mueven de su sitio */
 .pared {
   position: relative;
   width: 100%;
   height: 100%;
+  transform-origin: 0 0;
+  transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
 }
 
 /* --- Cuadros --- */
@@ -411,12 +416,10 @@ main a:hover {
   justify-content: center;
   background-color: var(--color-blanco);
   z-index: 1;
-  /* Movimiento cinematográfico + fundidos */
   transition:
-    transform 1.5s cubic-bezier(0.65, 0, 0.35, 1),
     opacity 0.8s ease,
     border-color 0.8s ease;
-  will-change: transform, opacity;
+  will-change: opacity;
 }
 
 /* Principales: borde grueso y oscuro, título centrado */
@@ -453,9 +456,7 @@ main a:hover {
 /* Fundido final dramático de toda la pared */
 .pared--final .cuadro {
   opacity: 0;
-  transition:
-    transform 1.5s cubic-bezier(0.65, 0, 0.35, 1),
-    opacity 1.8s ease;
+  transition: opacity 1.8s ease;
 }
 
 /* --- Distribución asimétrica de los 12 cuadros (según boceto) --- */
@@ -464,10 +465,10 @@ main a:hover {
 #cuadro-reservas  { left: 45%; top: 6%;  width: 26%; height: 30%; }  /* principal, grande */
 #cuadro-sec-2     { left: 76%; top: 9%;  width: 12%; height: 16%; }
 #cuadro-sec-3     { left: 6%;  top: 42%; width: 12%; height: 16%; }
-#cuadro-menu      { left: 25%; top: 39%; width: 26%; height: 30%; }  /* principal, grande */
+#cuadro-menu      { left: 25%; top: 39%; width: 24%; height: 28%; }  /* principal, grande */
 #cuadro-sec-4     { left: 56%; top: 44%; width: 10%; height: 13%; }
 #cuadro-blog      { left: 70%; top: 37%; width: 21%; height: 25%; }  /* principal, mediano */
-#cuadro-nosotros  { left: 4%;  top: 65%; width: 24%; height: 29%; }  /* principal, grande */
+#cuadro-nosotros  { left: 4%;  top: 70%; width: 24%; height: 25%; }  /* principal, grande */
 #cuadro-sec-5     { left: 33%; top: 77%; width: 12%; height: 15%; }
 #cuadro-contacto  { left: 50%; top: 64%; width: 24%; height: 28%; }  /* principal, grande */
 #cuadro-sec-6     { left: 80%; top: 73%; width: 12%; height: 16%; }
@@ -544,17 +545,6 @@ main a:hover {
 @keyframes parpadeo-flecha {
   0%, 100% { opacity: 1;    transform: translateY(0); }
   50%      { opacity: 0.25; transform: translateY(6px); }
-}
-
-/* --- Sección de cierre tras la pared --- */
-.cierre-inicio {
-  padding-top: 5rem;
-}
-
-.cierre-inicio__texto {
-  max-width: 44rem;
-  margin: 0 auto;
-  text-align: center;
 }
 
 /* --- Ajustes móviles de la pared --- */

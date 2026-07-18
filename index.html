@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=3">
+  <link rel="stylesheet" href="css/styles.css?v=4">
 </head>
 <body>
 
@@ -83,36 +83,23 @@
           </div>
           <div class="cuadro cuadro--secundario" id="cuadro-sec-6"></div>
 
-          <!-- Panel de resumen: el JS rellena título, texto y enlace -->
-          <div class="resumen-cuadro" id="resumen-cuadro">
-            <h2 class="resumen-cuadro__titulo" id="resumen-titulo"></h2>
-            <p class="resumen-cuadro__texto" id="resumen-texto"></p>
-            <a class="enlace-recuadro resumen-cuadro__enlace" id="resumen-enlace" href="#"></a>
-          </div>
-
-          <!-- Indicador de scroll -->
-          <div class="indicador-scroll" id="indicador-scroll">
-            <span class="indicador-scroll__flecha">&darr;</span>
-            <span class="indicador-scroll__texto">Desliza para ver más</span>
-          </div>
-
         </div>
+
+        <!-- Panel de resumen (fuera de la pared: no le afecta el zoom de cámara) -->
+        <div class="resumen-cuadro" id="resumen-cuadro">
+          <h2 class="resumen-cuadro__titulo" id="resumen-titulo"></h2>
+          <p class="resumen-cuadro__texto" id="resumen-texto"></p>
+          <a class="enlace-recuadro resumen-cuadro__enlace" id="resumen-enlace" href="#"></a>
+        </div>
+
+        <!-- Indicador de scroll (fuera de la pared por el mismo motivo) -->
+        <div class="indicador-scroll" id="indicador-scroll">
+          <span class="indicador-scroll__flecha">&darr;</span>
+          <span class="indicador-scroll__texto">Desliza para ver más</span>
+        </div>
+
       </div>
     </div>
-
-    <!-- ===== CIERRE: aparece cuando la pared se desvanece ===== -->
-    <section class="contenedor cierre-inicio">
-      <div class="cabecera-pagina">
-        <h1>Bar Ricardo desde 1947</h1>
-        <p>Tres generaciones de hospitalidad en el corazón de Valencia.</p>
-      </div>
-      <p class="cierre-inicio__texto">
-        Bienvenidos a la casa de las bravas. Desde 1947, Bar Ricardo es punto de
-        encuentro de generaciones de valencianos: producto de mercado, barra con
-        historia y una manera de entender la hospitalidad que no ha cambiado en
-        más de 75 años.
-      </p>
-    </section>
   </main>
 
   <!-- ===== FOOTER ===== -->
@@ -135,6 +122,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

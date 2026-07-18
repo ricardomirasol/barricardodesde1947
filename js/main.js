@@ -30,11 +30,11 @@ menu.querySelectorAll(".nav__enlace").forEach((enlace) => {
      de cuadros queda fija en pantalla (.escenario, position: sticky).
    - Según la posición del scroll se decide la fase:
        [intro] → [cuadro 1: enfoque → resumen] → [cuadro 2: ...] → [final]
-   - Cada sección ocupa SECCION píxeles de scroll: en la primera parte el
-     cuadro hace zoom y viaja a su posición (transición CSS de 1.5s), y a
-     partir del 45% aparece el resumen (fade de 0.4s).
-   - El movimiento en sí lo hace CSS (transition en .cuadro); aquí solo se
-     calcula el desplazamiento y se asignan clases.
+   - Cada sección ocupa SECCION píxeles de scroll: en la primera parte la
+     CÁMARA hace zoom sobre el cuadro (se escala la pared entera, los cuadros
+     no se mueven de su sitio), y a partir del 45% aparece el resumen.
+   - El movimiento en sí lo hace CSS (transition en .pared); aquí solo se
+     calcula el encuadre de la cámara y se asignan clases.
    -------------------------------------------------------------------------- */
 
 const pared = document.getElementById("pared-cuadros");
@@ -119,30 +119,34 @@ if (pared) {
     });
   }
 
-  // Aplica el zoom + desplazamiento hacia la posición de enfoque
+  // Encuadra la cámara sobre un cuadro: se escala y desplaza la PARED entera
+  // para que el cuadro quede en el lado izquierdo, centrado verticalmente.
+  // Los cuadros nunca cambian de posición dentro de la pared.
   function enfocar(id) {
     if (cuadroEnfocado === id) return;
 
-    // Suelta el cuadro anterior (vuelve a su sitio con la misma transición)
     if (cuadroEnfocado) {
-      const previo = bases[cuadroEnfocado];
-      previo.el.classList.remove("cuadro--enfocado");
-      previo.el.style.transform = "";
+      bases[cuadroEnfocado].el.classList.remove("cuadro--enfocado");
     }
 
     cuadroEnfocado = id;
-    if (!id) return;
+
+    // Sin cuadro enfocado: la cámara vuelve al plano general
+    if (!id) {
+      pared.style.transform = "";
+      return;
+    }
 
     const movil = window.innerWidth < 768;
     const b = bases[id];
     const anchoPared = pared.clientWidth;
     const altoPared = pared.clientHeight;
 
-    // Posición de destino: lado izquierdo centrado (en móvil, arriba centrado)
+    // Punto de la pantalla donde debe quedar el centro del cuadro
     const destinoX = movil ? anchoPared * 0.5 : anchoPared * 0.27;
     const destinoY = movil ? altoPared * 0.3 : altoPared * 0.5;
 
-    // Zoom ~1.5x, limitado para que el cuadro no se salga de su zona
+    // Zoom de cámara ~1.5x, limitado para que el cuadro quepa en su zona
     let escala = movil ? 1.4 : 1.5;
     escala = Math.min(
       escala,
@@ -151,11 +155,18 @@ if (pared) {
     );
     escala = Math.max(escala, 1.05);
 
-    const dx = destinoX - (b.izq + b.ancho / 2);
-    const dy = destinoY - (b.arriba + b.alto / 2);
+    // Centro del cuadro en coordenadas de la pared
+    const centroX = b.izq + b.ancho / 2;
+    const centroY = b.arriba + b.alto / 2;
+
+    // Con transform-origin en 0 0: un punto p acaba en p·escala + traslación,
+    // así que la traslación necesaria es destino − centro·escala
+    const dx = destinoX - centroX * escala;
+    const dy = destinoY - centroY * escala;
 
     b.el.classList.add("cuadro--enfocado");
-    b.el.style.transform = "translate(" + dx + "px, " + dy + "px) scale(" + escala.toFixed(3) + ")";
+    pared.style.transform =
+      "translate(" + dx.toFixed(1) + "px, " + dy.toFixed(1) + "px) scale(" + escala.toFixed(3) + ")";
   }
 
   // Los cuadros ya visitados se desvanecen suavemente
