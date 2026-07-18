@@ -15,8 +15,12 @@ Web estática del bar-restaurante **Bar Ricardo desde 1947** (Valencia).
 ├── historia.html     # La historia completa desde 1947
 ├── menu.html         # Visión interactiva de la carta
 ├── reservas.html     # Los 3 espacios + widget de Cover Manager
-├── contacto.html     # Ubicación, teléfono, horarios, email
 ├── blog.html         # Blog / Noticias
+├── pages/
+│   ├── contacto.html          # Hub de contacto (3 bloques)
+│   ├── contacto-directo.html  # Teléfono, email, dirección, horarios
+│   ├── contacto-redes.html    # Redes sociales y reseñas
+│   └── contacto-trabaja.html  # Trabaja con nosotros
 ├── css/
 │   └── styles.css    # Hoja de estilos principal (variables, nav, footer...)
 ├── js/

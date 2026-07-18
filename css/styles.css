@@ -240,7 +240,78 @@ main a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   6. FOOTER
+   6. SECCIÓN CONTACTO (hub con bloques imagen + texto)
+   -------------------------------------------------------------------------- */
+
+/* Pequeño título en granate sobre cada párrafo */
+.titulo-pequeno {
+  font-family: var(--fuente-cuerpo);
+  font-size: 1.2rem;             /* ~19px */
+  font-weight: 700;
+  color: var(--color-granate);
+  margin-bottom: 0.75rem;
+}
+
+/* Bloque: en móvil se apila (imagen arriba, texto debajo) */
+.bloque-contacto {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.bloque-contacto__imagen img {
+  width: 100%;
+  height: auto;                  /* mantiene la proporción natural */
+  border-radius: 4px;
+}
+
+.bloque-contacto__texto p {
+  line-height: 1.6;
+}
+
+/* Recuadro granate que funciona como enlace, integrado en el párrafo */
+.enlace-recuadro {
+  display: inline-block;
+  padding: 12px 16px;
+  margin-left: 0.35rem;
+  background-color: var(--color-granate);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.enlace-recuadro:hover {
+  background-color: #57101c;     /* granate un punto más oscuro */
+  border-bottom-color: transparent;
+}
+
+/* Línea divisoria fina entre bloques: no llega a los bordes (15% por lado) */
+.divisor-bloques {
+  border: none;
+  border-top: 1px solid #ddd8d3;
+  width: 70%;
+  margin: 0 auto;
+}
+
+/* Subpáginas de contacto: secciones preparadas para el contenido */
+.subpagina-seccion {
+  margin-bottom: 2.5rem;
+}
+
+.enlace-volver {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. FOOTER
    -------------------------------------------------------------------------- */
 .footer {
   background-color: var(--color-negro);
@@ -281,7 +352,7 @@ main a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   7. MEDIA QUERIES (tablet y escritorio)
+   8. MEDIA QUERIES (tablet y escritorio)
    -------------------------------------------------------------------------- */
 
 /* Tablet y superior: ≥ 768px */
@@ -305,6 +376,21 @@ main a:hover {
 
   .nav__enlace {
     padding: 0.5rem 0.9rem;
+  }
+
+  /* Bloques de contacto: dos columnas (imagen | texto) */
+  .bloque-contacto {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+  }
+
+  /* Bloque invertido: la imagen pasa a la derecha */
+  .bloque-contacto--invertido .bloque-contacto__imagen {
+    order: 2;
+  }
+
+  .bloque-contacto--invertido .bloque-contacto__texto {
+    order: 1;
   }
 
   .footer__contenedor {
