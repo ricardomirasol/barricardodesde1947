@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f5f3f0"/>
+  <rect x="0" y="560" width="800" height="40" fill="#6e1423"/>
+  <circle cx="345" cy="215" r="38" fill="none" stroke="#6e1423" stroke-width="6"/>
+  <path d="M280 335 a65 50 0 0 1 130 0" fill="none" stroke="#6e1423" stroke-width="6"/>
+  <circle cx="455" cy="215" r="38" fill="none" stroke="#6e1423" stroke-width="6"/>
+  <path d="M390 335 a65 50 0 0 1 130 0" fill="none" stroke="#6e1423" stroke-width="6"/>
+  <text x="400" y="420" font-family="Georgia, serif" font-size="30" fill="#4a4a4a" text-anchor="middle">[ Imagen: Ricardo y Susana ]</text>
+</svg>

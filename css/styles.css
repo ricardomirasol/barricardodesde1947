@@ -292,6 +292,26 @@ main a:hover {
   border-bottom-color: transparent;
 }
 
+/* Grupo de recuadros-enlace (p. ej. "Conoce a Ricardo" + "Conoce a Susana"):
+   apilados en móvil, en fila en escritorio */
+.grupo-recuadros {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.grupo-recuadros .enlace-recuadro {
+  margin-left: 0;
+}
+
+/* Llamada a la acción centrada al final de una página */
+.cta-final {
+  text-align: center;
+  margin-top: 3rem;
+}
+
 /* Línea divisoria fina entre bloques: no llega a los bordes (15% por lado) */
 .divisor-bloques {
   border: none;
@@ -376,6 +396,11 @@ main a:hover {
 
   .nav__enlace {
     padding: 0.5rem 0.9rem;
+  }
+
+  /* Grupo de recuadros: en fila */
+  .grupo-recuadros {
+    flex-direction: row;
   }
 
   /* Bloques de contacto: dos columnas (imagen | texto) */

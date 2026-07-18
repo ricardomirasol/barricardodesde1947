@@ -20,7 +20,11 @@ Web estática del bar-restaurante **Bar Ricardo desde 1947** (Valencia).
 │   ├── contacto.html          # Hub de contacto (3 bloques)
 │   ├── contacto-directo.html  # Teléfono, email, dirección, horarios
 │   ├── contacto-redes.html    # Redes sociales y reseñas
-│   └── contacto-trabaja.html  # Trabaja con nosotros
+│   ├── contacto-trabaja.html  # Trabaja con nosotros
+│   ├── nosotros.html          # Hub de nosotros (2 bloques)
+│   ├── nosotros-ricardo.html  # Perfil de Ricardo Mirasol
+│   ├── nosotros-susana.html   # Perfil de Susana Salvador
+│   └── nosotros-equipo.html   # El equipo + CTA de empleo
 ├── css/
 │   └── styles.css    # Hoja de estilos principal (variables, nav, footer...)
 ├── js/
