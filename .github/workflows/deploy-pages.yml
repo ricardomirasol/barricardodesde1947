@@ -1,0 +1,70 @@
+# Construye la web y la publica en GitHub Pages.
+#
+# La portada es una app de React, así que necesita un paso de build: Pages no
+# puede servir el repositorio tal cual. Este workflow compila con `npm run
+# build` y publica la carpeta `build/`, que ya incluye tanto el Inicio en React
+# como las páginas estáticas de `public/`.
+name: Desplegar en GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - claude/migrate-home-react-framer-ywgptk
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue a la vez; si llegan varios pushes, gana el último.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Tests
+        run: npm test -- --watchAll=false
+        env:
+          CI: true
+
+      # Debe ir antes del build: de aquí sale la ruta base (por ejemplo
+      # /barricardodesde1947) que Create React App necesita en PUBLIC_URL para
+      # generar bien los enlaces y las rutas de los assets.
+      - name: Configurar Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_URL: ${{ steps.pages.outputs.base_path }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  desplegar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar
+        id: deployment
+        uses: actions/deploy-pages@v4

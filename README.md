@@ -91,3 +91,18 @@ npm run build   # build de producción en build/
 
 El servidor de desarrollo sirve también las páginas estáticas: por ejemplo
 `http://localhost:3000/historia.html`.
+
+## Despliegue (GitHub Pages)
+
+La portada es una app de React, así que **Pages no puede servir el repositorio
+tal cual**: hace falta un paso de build. De eso se encarga
+`.github/workflows/deploy-pages.yml`, que compila y publica la carpeta `build/`
+(que ya contiene el Inicio en React y las páginas estáticas de `public/`).
+
+Para activarlo, una única vez, en **Settings → Pages → Build and deployment**
+hay que poner **Source: GitHub Actions**. A partir de ahí cada push a la rama
+configurada vuelve a desplegar.
+
+El workflow pasa la ruta base del sitio a `PUBLIC_URL`, de modo que los enlaces
+y los assets funcionan igual en la raíz del dominio que en un subdirectorio
+como `/barricardodesde1947/`.
